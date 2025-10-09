@@ -1,0 +1,73 @@
+[
+  {
+    "group": "Tổng quan",
+    "items": [
+      {
+        "name": "Trang chủ",
+        "path": "/"
+      }
+    ]
+  },
+  {
+    "group": "Master Data",
+    "items": [
+      {
+        "name": "Tổ chức",
+        "path": "/organizations"
+      },
+      {
+        "name": "Chi nhánh",
+        "path": "/branches"
+      },
+      {
+        "name": "Kho",
+        "path": "/warehouses"
+      },
+      {
+        "name": "Vị trí",
+        "path": "/locations"
+      },
+      {
+        "name": "Đối tác",
+        "path": "/partners"
+      },
+      {
+        "name": "Đơn vị tính",
+        "path": "/uoms"
+      },
+      {
+        "name": "Loại hàng",
+        "path": "/goods-types"
+      },
+      {
+        "name": "Mã hàng",
+        "path": "/model-goods"
+      }
+    ]
+  },
+  {
+    "group": "Operations",
+    "items": [
+      {
+        "name": "Phiếu Nhập Kho",
+        "path": "/goods-receipts"
+      },
+      {
+        "name": "Phiếu Xuất Kho",
+        "path": "/goods-issues"
+      },
+      {
+        "name": "Phiếu Chuyển Kho",
+        "path": "/goods-transfers"
+      },
+      {
+        "name": "Phiếu Kiểm Kê",
+        "path": "/inventory-counts"
+      },
+      {
+        "name": "Phiếu Sắp Xếp",
+        "path": "/rearrangement"
+      }
+    ]
+  }
+]
