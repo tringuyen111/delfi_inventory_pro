@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { Warehouse } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { Warehouse } from '../types';
 
 const WarehousePage: React.FC = () => {
   const [warehouses, setWarehouses] = useState<Warehouse[]>([]);

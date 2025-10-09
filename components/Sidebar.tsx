@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import menu from '@/menu.json';
 
 const BoxIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -8,10 +7,94 @@ const BoxIcon: React.FC<{ className?: string }> = ({ className }) => (
     </svg>
 );
 
+interface MenuItem {
+  name: string;
+  path: string;
+}
+
+interface MenuGroup {
+  group: string;
+  items: MenuItem[];
+}
+
+const menuData: MenuGroup[] = [
+  {
+    "group": "Tổng quan",
+    "items": [
+      {
+        "name": "Trang chủ",
+        "path": "/"
+      }
+    ]
+  },
+  {
+    "group": "Master Data",
+    "items": [
+      {
+        "name": "Tổ chức",
+        "path": "/organizations"
+      },
+      {
+        "name": "Chi nhánh",
+        "path": "/branches"
+      },
+      {
+        "name": "Kho",
+        "path": "/warehouses"
+      },
+      {
+        "name": "Vị trí",
+        "path": "/locations"
+      },
+      {
+        "name": "Đối tác",
+        "path": "/partners"
+      },
+      {
+        "name": "Đơn vị tính",
+        "path": "/uoms"
+      },
+      {
+        "name": "Loại hàng",
+        "path": "/goods-types"
+      },
+      {
+        "name": "Mã hàng",
+        "path": "/model-goods"
+      }
+    ]
+  },
+  {
+    "group": "Operations",
+    "items": [
+      {
+        "name": "Phiếu Nhập Kho",
+        "path": "/goods-receipts"
+      },
+      {
+        "name": "Phiếu Xuất Kho",
+        "path": "/goods-issues"
+      },
+      {
+        "name": "Phiếu Chuyển Kho",
+        "path": "/goods-transfers"
+      },
+      {
+        "name": "Phiếu Kiểm Kê",
+        "path": "/inventory-counts"
+      },
+      {
+        "name": "Phiếu Sắp Xếp",
+        "path": "/rearrangement"
+      }
+    ]
+  }
+];
+
 const Sidebar: React.FC = () => {
     const activeClassName = "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 border-l-4 border-primary-500 font-semibold";
     const inactiveClassName = "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-gray-100";
-
+    
     return (
         <aside className="h-full bg-white dark:bg-gray-800/50 backdrop-blur-sm shadow-xl rounded-lg p-4 flex flex-col">
             <div className="flex items-center justify-center gap-3 border-b border-gray-200 dark:border-gray-700 pb-4 mb-4">
@@ -21,7 +104,7 @@ const Sidebar: React.FC = () => {
                  </h1>
             </div>
             <nav className="flex-1 space-y-4">
-                {menu.map((group, index) => (
+                {menuData.map((group, index) => (
                     <div key={index}>
                         <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
                             {group.group}

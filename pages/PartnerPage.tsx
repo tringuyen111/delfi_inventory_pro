@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { Partner } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { Partner } from '../types';
 
 const PartnerPage: React.FC = () => {
   const [partners, setPartners] = useState<Partner[]>([]);

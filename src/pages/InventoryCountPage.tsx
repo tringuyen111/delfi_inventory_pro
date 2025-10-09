@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { DocStatus } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { DocStatus } from '../types';
 
 const InventoryCountPage: React.FC = () => {
   const [inventoryCounts, setInventoryCounts] = useState<any[]>([]);

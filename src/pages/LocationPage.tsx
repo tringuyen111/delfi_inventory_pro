@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
+import { supabase } from '../utils/supabaseClient';
 
 const LocationPage: React.FC = () => {
   const [locations, setLocations] = useState<any[]>([]);

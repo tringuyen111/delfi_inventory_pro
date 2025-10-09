@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { DocStatus } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { DocStatus } from '../types';
 
 const GoodsIssuePage: React.FC = () => {
   const [goodsIssues, setGoodsIssues] = useState<any[]>([]);

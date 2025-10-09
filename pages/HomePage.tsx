@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/components/Header';
-import ProjectConfirmation from '@/components/ProjectConfirmation';
-import ActionPlan from '@/components/ActionPlan';
+import Header from '../components/Header';
+import ProjectConfirmation from '../components/ProjectConfirmation';
+import ActionPlan from '../components/ActionPlan';
 
 const HomePage: React.FC = () => {
   return (

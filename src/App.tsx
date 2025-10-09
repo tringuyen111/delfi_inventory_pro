@@ -1,24 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Sidebar from '@/components/Sidebar';
-import HomePage from '@/pages/HomePage';
-import OrganizationPage from '@/pages/OrganizationPage';
-import BranchPage from '@/pages/BranchPage';
-import WarehousePage from '@/pages/WarehousePage';
-import LocationPage from '@/pages/LocationPage';
-import PartnerPage from '@/pages/PartnerPage';
-import UomPage from '@/pages/UomPage';
-import GoodsTypePage from '@/pages/GoodsTypePage';
-import ModelGoodsPage from '@/pages/ModelGoodsPage';
-import GoodsReceiptPage from '@/pages/GoodsReceiptPage';
-import GoodsIssuePage from '@/pages/GoodsIssuePage';
-import GoodsTransferPage from '@/pages/GoodsTransferPage';
-import InventoryCountPage from '@/pages/InventoryCountPage';
-import RearrangementPage from '@/pages/RearrangementPage';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import HomePage from './pages/HomePage';
+import OrganizationPage from './pages/OrganizationPage';
+import BranchPage from './pages/BranchPage';
+import WarehousePage from './pages/WarehousePage';
+import LocationPage from './pages/LocationPage';
+import PartnerPage from './pages/PartnerPage';
+import UomPage from './pages/UomPage';
+import GoodsTypePage from './pages/GoodsTypePage';
+import ModelGoodsPage from './pages/ModelGoodsPage';
+import GoodsReceiptPage from './pages/GoodsReceiptPage';
+import GoodsIssuePage from './pages/GoodsIssuePage';
+import GoodsTransferPage from './pages/GoodsTransferPage';
+import InventoryCountPage from './pages/InventoryCountPage';
+import RearrangementPage from './pages/RearrangementPage';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="bg-gray-100 dark:bg-gray-900 min-h-screen">
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -48,7 +48,7 @@ const App: React.FC = () => {
           </div>
         </main>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

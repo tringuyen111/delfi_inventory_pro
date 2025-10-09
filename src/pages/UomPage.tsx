@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { Uom } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { Uom } from '../types';
 
 const UomPage: React.FC = () => {
   const [uoms, setUoms] = useState<Uom[]>([]);

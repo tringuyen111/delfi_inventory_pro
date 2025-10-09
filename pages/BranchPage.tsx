@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { Branch } from '@/types';
+import { supabase } from '../utils/supabaseClient';
+import { Branch } from '../types';
 
 const BranchPage: React.FC = () => {
   const [branches, setBranches] = useState<Branch[]>([]);
