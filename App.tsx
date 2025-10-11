@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import OrganizationPage from './pages/OrganizationPage';
@@ -18,7 +18,7 @@ import RearrangementPage from './pages/RearrangementPage';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {/* 
         Layout chính của ứng dụng.
         - Sử dụng Grid để chia cột, đáp ứng trên nhiều kích thước màn hình.
@@ -57,7 +57,7 @@ const App: React.FC = () => {
           </div>
         </main>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
