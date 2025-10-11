@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const BoxIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -17,81 +17,29 @@ interface MenuGroup {
   items: MenuItem[];
 }
 
-const menuData: MenuGroup[] = [
-  {
-    "group": "Tổng quan",
-    "items": [
-      {
-        "name": "Trang chủ",
-        "path": "/"
-      }
-    ]
-  },
-  {
-    "group": "Master Data",
-    "items": [
-      {
-        "name": "Tổ chức",
-        "path": "/organizations"
-      },
-      {
-        "name": "Chi nhánh",
-        "path": "/branches"
-      },
-      {
-        "name": "Kho",
-        "path": "/warehouses"
-      },
-      {
-        "name": "Vị trí",
-        "path": "/locations"
-      },
-      {
-        "name": "Đối tác",
-        "path": "/partners"
-      },
-      {
-        "name": "Đơn vị tính",
-        "path": "/uoms"
-      },
-      {
-        "name": "Loại hàng",
-        "path": "/goods-types"
-      },
-      {
-        "name": "Mã hàng",
-        "path": "/model-goods"
-      }
-    ]
-  },
-  {
-    "group": "Operations",
-    "items": [
-      {
-        "name": "Phiếu Nhập Kho",
-        "path": "/goods-receipts"
-      },
-      {
-        "name": "Phiếu Xuất Kho",
-        "path": "/goods-issues"
-      },
-      {
-        "name": "Phiếu Chuyển Kho",
-        "path": "/goods-transfers"
-      },
-      {
-        "name": "Phiếu Kiểm Kê",
-        "path": "/inventory-counts"
-      },
-      {
-        "name": "Phiếu Sắp Xếp",
-        "path": "/rearrangement"
-      }
-    ]
-  }
-];
-
 const Sidebar: React.FC = () => {
+    const [menu, setMenu] = useState<MenuGroup[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenu = async () => {
+            try {
+                const response = await fetch('/src/menu.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setMenu(data);
+            } catch (error) {
+                console.error("Failed to fetch menu:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMenu();
+    }, []);
+
     const activeClassName = "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 border-l-4 border-primary-500 font-semibold";
     const inactiveClassName = "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-gray-100";
     
@@ -104,29 +52,33 @@ const Sidebar: React.FC = () => {
                  </h1>
             </div>
             <nav className="flex-1 space-y-4">
-                {menuData.map((group, index) => (
-                    <div key={index}>
-                        <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
-                            {group.group}
-                        </h3>
-                        <div className="mt-2 space-y-1">
-                            {group.items.map((item, itemIndex) => (
-                                <NavLink
-                                    key={itemIndex}
-                                    to={item.path}
-                                    end={item.path === '/'}
-                                    className={({ isActive }) =>
-                                        `flex items-center px-3 py-2 text-sm rounded-md transition-colors duration-150 ${
-                                            isActive ? activeClassName : inactiveClassName
-                                        }`
-                                    }
-                                >
-                                    {item.name}
-                                </NavLink>
-                            ))}
+                {loading ? (
+                    <p className="px-3 text-sm text-gray-500 dark:text-gray-400">Loading menu...</p>
+                ) : (
+                    menu.map((group, index) => (
+                        <div key={index}>
+                            <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
+                                {group.group}
+                            </h3>
+                            <div className="mt-2 space-y-1">
+                                {group.items.map((item, itemIndex) => (
+                                    <NavLink
+                                        key={itemIndex}
+                                        to={item.path}
+                                        end={item.path === '/'}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-3 py-2 text-sm rounded-md transition-colors duration-150 ${
+                                                isActive ? activeClassName : inactiveClassName
+                                            }`
+                                        }
+                                    >
+                                        {item.name}
+                                    </NavLink>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                )}
             </nav>
         </aside>
     );
