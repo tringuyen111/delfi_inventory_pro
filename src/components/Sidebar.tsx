@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import menuData from '../menu.json'; // SỬA LỖI: Import trực tiếp file JSON
 
 const BoxIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -18,27 +19,7 @@ interface MenuGroup {
 }
 
 const Sidebar: React.FC = () => {
-    const [menu, setMenu] = useState<MenuGroup[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchMenu = async () => {
-            try {
-                const response = await fetch(new URL('../menu.json', import.meta.url));
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data: MenuGroup[] = await response.json();
-                setMenu(data);
-            } catch (error) {
-                console.error("Failed to fetch menu:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchMenu();
-    }, []);
+    const menu: MenuGroup[] = menuData; // SỬA LỖI: Gán dữ liệu trực tiếp
 
     const activeClassName = "bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 border-l-4 border-primary-500 font-semibold";
     const inactiveClassName = "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-gray-900 dark:hover:text-gray-100";
@@ -52,33 +33,29 @@ const Sidebar: React.FC = () => {
                  </h1>
             </div>
             <nav className="flex-1 space-y-4">
-                {loading ? (
-                    <p className="px-3 text-sm text-gray-500 dark:text-gray-400">Loading menu...</p>
-                ) : (
-                    menu.map((group, index) => (
-                        <div key={index}>
-                            <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
-                                {group.group}
-                            </h3>
-                            <div className="mt-2 space-y-1">
-                                {group.items.map((item, itemIndex) => (
-                                    <NavLink
-                                        key={itemIndex}
-                                        to={item.path}
-                                        end={item.path === '/'}
-                                        className={({ isActive }) =>
-                                            `flex items-center px-3 py-2 text-sm rounded-md transition-colors duration-150 ${
-                                                isActive ? activeClassName : inactiveClassName
-                                            }`
-                                        }
-                                    >
-                                        {item.name}
-                                    </NavLink>
-                                ))}
-                            </div>
+                {menu.map((group, index) => (
+                    <div key={index}>
+                        <h3 className="px-3 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
+                            {group.group}
+                        </h3>
+                        <div className="mt-2 space-y-1">
+                            {group.items.map((item, itemIndex) => (
+                                <NavLink
+                                    key={itemIndex}
+                                    to={item.path}
+                                    end={item.path === '/'}
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 text-sm rounded-md transition-colors duration-150 ${
+                                            isActive ? activeClassName : inactiveClassName
+                                        }`
+                                    }
+                                >
+                                    {item.name}
+                                </NavLink>
+                            ))}
                         </div>
-                    ))
-                )}
+                    </div>
+                ))}
             </nav>
         </aside>
     );
