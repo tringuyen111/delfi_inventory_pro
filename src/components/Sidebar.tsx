@@ -24,11 +24,11 @@ const Sidebar: React.FC = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const response = await fetch('/src/menu.json');
+                const response = await fetch(new URL('../menu.json', import.meta.url));
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await response.json();
+                const data: MenuGroup[] = await response.json();
                 setMenu(data);
             } catch (error) {
                 console.error("Failed to fetch menu:", error);

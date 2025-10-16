@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { supabase } from '@/utils/supabaseClient';
-import { Organization } from '@/types';
-import ConfirmationModal from '@/components/ui/ConfirmationModal';
+import { supabase } from '../utils/supabaseClient';
+import { Organization } from '../types';
+import ConfirmationModal from '../components/ui/ConfirmationModal';
 
 // --- Icons ---
 const EditIcon: React.FC<{ className?: string }> = ({ className }) => (
