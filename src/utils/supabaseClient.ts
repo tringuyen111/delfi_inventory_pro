@@ -3,8 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 // FIX: Use a type assertion for `import.meta.env` to work around TypeScript errors
 // when Vite's client types are not found. This resolves issues with `import.meta.env`
 // being untyped without relying on a triple-slash directive that may fail in certain setups.
-const supabaseUrl = (import.meta.env as any).VITE_SUPABASE_URL;
-const supabaseAnonKey = (import.meta.env as any).VITE_SUPABASE_ANON_KEY;
+// FIX: Corrected misplaced type assertion. The cast should be on `import.meta` to allow accessing the `env` property.
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error("Supabase URL and Anon Key must be defined in .env.local");
